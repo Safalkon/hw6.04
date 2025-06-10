@@ -78,12 +78,6 @@ services:
     networks:
       - Safronov-AK-my-netology-hw
 ```
-
-
----
-
-### Задание 4
-
 ![1](img/1.png)
 
 
