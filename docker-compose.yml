@@ -1,0 +1,53 @@
+volumes:
+
+  prometheus-data:
+  grafana-storage:
+
+networks:
+  Safronov-AK-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+
+services:
+  prometheus:
+    image: "prom/prometheus:latest"
+    container_name: "Safronov-AK-netology-prometheus"
+    command: "--config.file=/etc/prometheus/prometheus.yml"
+    restart: "unless-stopped"
+    ports:
+      - "9090:9090" 
+    volumes:
+      - ./prometheus-data:/prometheus 
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml 
+    networks:
+      - Safronov-AK-my-netology-hw
+  pushgateway:
+    image: prom/pushgateway:v1.7.0
+    container_name: Safronov-AK-netology-pushgateway
+    restart: unless-stopped
+    ports:
+      - "9091:9091" 
+    networks:
+      - Safronov-AK-my-netology-hw
+    depends_on:
+      - prometheus
+  grafana:
+    image: grafana/grafana:10.4.2
+    container_name: Safronov-ak-netology-grafana
+    restart: unless-stopped
+    ports:
+      - "80:3000"  
+    environment:
+      - GF_PATHS_CONFIG=/etc/grafana/custom.ini  
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana:/etc/grafana/provisioning  
+      - ./grafana/custom.ini:/etc/grafana/custom.ini  
+    networks:
+      - Safronov-AK-my-netology-hw  
+    depends_on:
+      - prometheus
+      - pushgateway
