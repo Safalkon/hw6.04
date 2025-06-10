@@ -98,15 +98,16 @@ services:
 
 ### Задание 7
 
+[docker-compose.yml](https://github.com/Safalkon/hw6.04/blob/main/docker-compose.yml)
+
+
 ![1](img/3.png)
 ![1](img/4.png)
 
 ---
 
-### Задание 7
+### Задание 8
 
-[docker-compose.yml](https://github.com/Safalkon/hw6.04/blob/main/docker-compose.yml)
-![1](img/3.png)
-![1](img/4.png)
+![1](img/5.png)
 
 ---
