@@ -24,6 +24,7 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml 
     networks:
       - Safronov-AK-my-netology-hw
+      
   pushgateway:
     image: prom/pushgateway:v1.7.0
     container_name: Safronov-AK-netology-pushgateway
@@ -34,6 +35,7 @@ services:
       - Safronov-AK-my-netology-hw
     depends_on:
       - prometheus
+      
   grafana:
     image: grafana/grafana:10.4.2
     container_name: Safronov-ak-netology-grafana
